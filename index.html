@@ -1,1 +1,433 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ARM — Ari Representações Multimarcas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#12A5A0;
+  --teal-dark:#0A6E6A;
+  --navy:#173154;
+  --cream:#FBF7EE;
+  --coral:#F0664B;
+  --gold:#F2B33D;
+  --ink:#173154;
+  --paper:#FFFFFF;
+  --line:#E4DCC8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif; line-height:1.55;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Baloo 2',system-ui,sans-serif; margin:0; line-height:1.08;}
+img,svg{max-width:100%; display:block;}
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+a{color:inherit;}
+
+/* NAV */
+header{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:rgba(251,247,238,.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+.brand{display:flex; align-items:center; gap:10px; font-family:'Baloo 2'; font-weight:700; font-size:1.15rem; color:var(--navy);}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);}
+.navlinks{display:flex; gap:28px; font-weight:600; font-size:.94rem;}
+.navlinks a{text-decoration:none; opacity:.85;}
+.navlinks a:hover{opacity:1; color:var(--teal-dark);}
+.cta-btn{
+  background:var(--teal); color:#fff; padding:10px 20px; border-radius:100px;
+  font-weight:700; text-decoration:none; font-size:.92rem; white-space:nowrap;
+  box-shadow:0 4px 14px rgba(18,165,160,.28);
+}
+@media (max-width:720px){.navlinks{display:none;}}
+
+/* HERO */
+.hero{position:relative; padding:72px 24px 96px; overflow:hidden;}
+.hero-grid{
+  max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr;
+  gap:48px; align-items:center; position:relative; z-index:2;
+}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.eyebrow{color:var(--coral); font-weight:700; font-size:.95rem; margin-bottom:14px;}
+.hero h1{font-size:clamp(2.3rem,5vw,3.6rem); color:var(--navy);}
+.hero h1 span{color:var(--teal);}
+.hero p{font-size:1.08rem; max-width:480px; margin-top:18px; color:#3A4A5E;}
+.hero-actions{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+.btn-primary{
+  background:var(--coral); color:#fff; padding:14px 26px; border-radius:100px;
+  font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(240,102,75,.32);
+}
+.btn-ghost{
+  border:2px solid var(--navy); color:var(--navy); padding:12px 24px; border-radius:100px;
+  font-weight:700; text-decoration:none;
+}
+.balloon{position:absolute; z-index:1;}
+.b1{top:-30px; right:6%; width:120px; animation:float1 7s ease-in-out infinite;}
+.b2{top:220px; right:22%; width:70px; animation:float2 6s ease-in-out infinite;}
+.b3{bottom:-10px; left:2%; width:90px; animation:float1 8s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-18px) rotate(2deg);}}
+@keyframes float2{0%,100%{transform:translateY(0) rotate(3deg);}50%{transform:translateY(-14px) rotate(-3deg);}}
+@media (prefers-reduced-motion:reduce){.balloon{animation:none;}}
+.hero-art{position:relative; z-index:2;}
+
+/* SECTION SHELL */
+section{padding:64px 24px;}
+.section-head{max-width:640px; margin-bottom:40px;}
+.section-head .eyebrow{margin-bottom:8px;}
+.section-head h2{font-size:clamp(1.7rem,3.2vw,2.3rem); color:var(--navy);}
+.section-head p{color:#4A5A6E; margin-top:10px;}
+
+/* PRODUCTS */
+.products{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.prod-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+@media (max-width:900px){.prod-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:520px){.prod-grid{grid-template-columns:1fr;}}
+.prod-card{
+  background:var(--cream); border:1px solid var(--line); border-radius:20px;
+  padding:26px 22px; text-align:left;
+}
+.prod-card .icon-wrap{width:100%; height:120px; border-radius:14px; overflow:hidden; margin-bottom:16px;}
+.prod-card h3{font-size:1.15rem; color:var(--navy); margin-bottom:8px;}
+.prod-card p{font-size:.92rem; color:#4A5A6E; margin:0;}
+
+/* PORTFOLIO */
+.portfolio-head{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;}
+.port-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px;}
+@media (max-width:860px){.port-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.port-grid{grid-template-columns:1fr;}}
+.port-card{
+  border-radius:18px; overflow:hidden; position:relative; aspect-ratio:4/3;
+  display:flex; align-items:flex-end; padding:16px; background:var(--paper); border:1px solid var(--line);
+}
+.port-card svg{position:absolute; inset:0; width:100%; height:100%;}
+.port-card .tag{
+  position:relative; z-index:2;
+  background:rgba(255,255,255,.94); color:var(--navy); font-weight:700; font-size:.82rem;
+  padding:6px 12px; border-radius:100px;
+}
+
+/* TESTIMONIALS */
+.testi{background:var(--navy); color:#fff;}
+.testi .section-head h2{color:#fff;}
+.testi .section-head p{color:#C9D6E4;}
+.testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media (max-width:900px){.testi-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.testi-grid{grid-template-columns:1fr;}}
+.testi-card{
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  border-radius:18px; padding:24px;
+}
+.stars{color:var(--gold); font-size:.95rem; margin-bottom:12px; letter-spacing:2px;}
+.testi-card p{font-size:.96rem; color:#E4ECF3; margin:0 0 16px;}
+.testi-who{display:flex; align-items:center; gap:12px;}
+.avatar{
+  width:38px; height:38px; border-radius:50%; background:var(--teal);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Baloo 2'; color:#fff; font-size:.9rem;
+}
+.testi-who .name{font-weight:700; font-size:.9rem;}
+.testi-who .biz{font-size:.8rem; color:#AEC0D4;}
+
+/* CTA / CONTACT */
+.contact{background:var(--teal); color:#fff; position:relative; overflow:hidden;}
+.contact-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; position:relative; z-index:2;}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+.contact h2{font-size:clamp(1.8rem,3.4vw,2.5rem);}
+.contact p{color:#E7F7F5; margin-top:12px; max-width:440px;}
+.contact-card{
+  background:#fff; color:var(--navy); border-radius:20px; padding:28px; box-shadow:0 20px 40px rgba(0,0,0,.14);
+}
+.contact-card .row{display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-weight:600; font-size:.95rem;}
+.contact-card .row:last-child{border-bottom:none;}
+.contact-card .row svg{width:20px; height:20px; flex-shrink:0; color:var(--teal-dark);}
+.contact-card .row a{text-decoration:none;}
+.contact .btn-primary{margin-top:22px;}
+
+footer{background:var(--navy); color:#AEC0D4; text-align:center; padding:28px 24px; font-size:.85rem;}
+footer strong{color:#fff;}
+
+/* CHAT WIDGET */
+.chat-fab{
+  position:fixed; bottom:env(safe-area-inset-bottom,20px); right:20px; z-index:60;
+  background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.chat-fab svg{width:30px; height:30px;}
+.chat-bubble{
+  position:fixed; bottom:calc(env(safe-area-inset-bottom,20px) + 74px); right:20px; z-index:60;
+  background:#fff; border:1px solid var(--line); border-radius:14px 14px 4px 14px;
+  padding:10px 14px; font-size:.85rem; font-weight:600; color:var(--navy);
+  box-shadow:0 8px 20px rgba(0,0,0,.12); max-width:190px;
+}
+
+:root:not([data-theme="light"]) { }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --cream:#12181F; --paper:#171F29; --ink:#EAEFF4; --navy:#0B1520; --line:#2A3644;
+  }
+  body{color:#EAEFF4;}
+  .prod-card p, .section-head p{color:#AEBAC8;}
+  .contact-card{background:#171F29; color:#EAEFF4;}
+  .contact-card .row{border-color:#2A3644;}
+}
+:root[data-theme="dark"]{
+  --cream:#12181F; --paper:#171F29; --ink:#EAEFF4; --navy:#0B1520; --line:#2A3644;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><span class="dot"></span>ARM · Ari Representações</div>
+    <nav class="navlinks">
+      <a href="#produtos">Produtos</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="cta-btn" href="https://wa.me/5579981575277" target="_blank" rel="noopener">Falar agora</a>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="balloon b1" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="50" rx="42" ry="50" fill="#F0664B"/><path d="M50 100 L50 130" stroke="#173154" stroke-width="2"/><path d="M46 130 l8 6 l8 -6" fill="none" stroke="#173154" stroke-width="2"/></svg>
+  <svg class="balloon b2" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="50" rx="38" ry="46" fill="#F2B33D"/><path d="M50 96 L50 128" stroke="#173154" stroke-width="2"/></svg>
+  <svg class="balloon b3" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="50" rx="40" ry="48" fill="#12A5A0"/><path d="M50 98 L50 132" stroke="#173154" stroke-width="2"/></svg>
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Sergipe · a serviço da sua empresa</div>
+      <h1>Tudo para <span>festas</span>, decoração e o dia a dia da sua loja</h1>
+      <p>A ARM representa e distribui descartáveis, balões, velas, decorações, brinquedos e utilidades domésticas para lojistas de todo o Sergipe — com atendimento direto e entrega rápida.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/5579981575277" target="_blank" rel="noopener">Fazer um pedido</a>
+        <a class="btn-ghost" href="#trabalhos">Ver trabalhos</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="180" r="170" fill="#12A5A0" opacity="0.12"/>
+        <g transform="translate(60,40)">
+          <ellipse cx="60" cy="70" rx="46" ry="56" fill="#F0664B"/>
+          <ellipse cx="150" cy="40" rx="38" ry="48" fill="#F2B33D"/>
+          <ellipse cx="230" cy="90" rx="42" ry="52" fill="#12A5A0"/>
+          <path d="M60 126 L60 190" stroke="#173154" stroke-width="3"/>
+          <path d="M150 88 L150 190" stroke="#173154" stroke-width="3"/>
+          <path d="M230 142 L230 190" stroke="#173154" stroke-width="3"/>
+          <rect x="30" y="190" width="230" height="18" rx="9" fill="#173154" opacity="0.85"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="produtos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">O que representamos</div>
+      <h2>Um catálogo completo para o seu negócio</h2>
+      <p>Quatro linhas de produtos prontas para abastecer papelarias, lojas de festa, mercadinhos e bazares.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <svg class="icon-wrap" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="120" fill="#FDEBD8"/>
+          <circle cx="60" cy="55" r="26" fill="#F0664B"/><circle cx="110" cy="40" r="20" fill="#F2B33D"/><circle cx="150" cy="60" r="22" fill="#12A5A0"/>
+          <path d="M60 81 L60 105 M110 60 L110 100 M150 82 L150 105" stroke="#173154" stroke-width="2"/>
+          <rect x="30" y="10" width="10" height="18" fill="#173154"/><rect x="30" y="10" width="10" height="18" fill="#173154" transform="rotate(90 35 19)"/>
+        </svg>
+        <h3>Festas</h3>
+        <p>Descartáveis, balões e velas para todo tipo de celebração.</p>
+      </div>
+      <div class="prod-card">
+        <svg class="icon-wrap" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="120" fill="#E4F6F5"/>
+          <path d="M20 30 Q100 -10 180 30" fill="none" stroke="#12A5A0" stroke-width="4"/>
+          <circle cx="40" cy="30" r="6" fill="#F0664B"/><circle cx="70" cy="15" r="6" fill="#F2B33D"/><circle cx="100" cy="8" r="6" fill="#12A5A0"/><circle cx="130" cy="15" r="6" fill="#F0664B"/><circle cx="160" cy="30" r="6" fill="#F2B33D"/>
+          <rect x="75" y="55" width="50" height="45" rx="6" fill="#173154"/><rect x="95" y="55" width="10" height="45" fill="#FDEBD8"/><rect x="75" y="72" width="50" height="10" fill="#FDEBD8"/>
+        </svg>
+        <h3>Decorações</h3>
+        <p>Itens para transformar qualquer ambiente em clima de festa.</p>
+      </div>
+      <div class="prod-card">
+        <svg class="icon-wrap" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="120" fill="#EFEAF6"/>
+          <rect x="35" y="55" width="34" height="34" rx="6" fill="#F0664B"/>
+          <circle cx="140" cy="72" r="20" fill="#F2B33D"/>
+          <polygon points="100,90 122,50 78,50" fill="#12A5A0"/>
+        </svg>
+        <h3>Brinquedos</h3>
+        <p>Sortimento variado para lojas de bairro e papelarias.</p>
+      </div>
+      <div class="prod-card">
+        <svg class="icon-wrap" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="120" fill="#EAF3EF"/>
+          <rect x="70" y="20" width="60" height="80" rx="6" fill="#173154"/>
+          <rect x="82" y="34" width="36" height="8" fill="#FBF7EE"/><rect x="82" y="50" width="36" height="8" fill="#FBF7EE"/><rect x="82" y="66" width="36" height="8" fill="#FBF7EE"/>
+          <circle cx="40" cy="90" r="14" fill="#F2B33D"/><rect x="34" y="60" width="12" height="28" fill="#F2B33D"/>
+          <circle cx="160" cy="90" r="14" fill="#F0664B"/><rect x="154" y="60" width="12" height="28" fill="#F0664B"/>
+        </svg>
+        <h3>Utilidades domésticas</h3>
+        <p>Itens práticos para o dia a dia, direto do fornecedor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trabalhos">
+  <div class="wrap">
+    <div class="portfolio-head section-head">
+      <div>
+        <div class="eyebrow">Nosso trabalho</div>
+        <h2>Clientes que já receberam a ARM</h2>
+      </div>
+    </div>
+    <div class="port-grid">
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#FDEBD8"/>
+          <rect x="30" y="40" width="340" height="18" fill="#F2B33D"/>
+          <rect x="30" y="90" width="340" height="18" fill="#F2B33D"/>
+          <rect x="30" y="140" width="340" height="18" fill="#F2B33D"/>
+          <rect x="55" y="20" width="14" height="60" fill="#F0664B"/><rect x="95" y="25" width="14" height="55" fill="#12A5A0"/><rect x="135" y="18" width="14" height="62" fill="#173154"/>
+          <rect x="55" y="70" width="14" height="60" fill="#12A5A0"/><rect x="95" y="75" width="14" height="55" fill="#F0664B"/><rect x="135" y="68" width="14" height="62" fill="#F2B33D"/>
+          <circle cx="290" cy="60" r="16" fill="#F0664B"/><rect x="284" y="76" width="12" height="30" fill="#173154"/>
+        </svg>
+        <span class="tag">Papelarias</span>
+      </div>
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#E4F6F5"/>
+          <path d="M60 260 Q200 60 340 260" fill="none" stroke="#12A5A0" stroke-width="10"/>
+          <circle cx="80" cy="240" r="26" fill="#F0664B"/><circle cx="140" cy="180" r="26" fill="#F2B33D"/><circle cx="200" cy="140" r="26" fill="#12A5A0"/><circle cx="260" cy="180" r="26" fill="#F0664B"/><circle cx="320" cy="240" r="26" fill="#F2B33D"/>
+          <rect x="170" y="220" width="60" height="46" rx="6" fill="#173154"/><rect x="192" y="220" width="16" height="46" fill="#FDEBD8"/>
+        </svg>
+        <span class="tag">Lojas de festa</span>
+      </div>
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#FBEFD6"/>
+          <ellipse cx="200" cy="250" rx="150" ry="18" fill="#E4DCC8"/>
+          <path d="M100 250 L120 170 h160 l20 80 Z" fill="#F2B33D"/>
+          <path d="M120 170 h160 l-14 -30 h-132 Z" fill="#F0664B"/>
+          <circle cx="160" cy="200" r="10" fill="#173154"/><circle cx="200" cy="205" r="10" fill="#12A5A0"/><circle cx="240" cy="200" r="10" fill="#173154"/>
+        </svg>
+        <span class="tag">Bazares</span>
+      </div>
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#EAF3EF"/>
+          <path d="M120 130 h180 l-24 110 h-132 Z" fill="#12A5A0"/>
+          <path d="M150 130 q0 -40 50 -40 q50 0 50 40" fill="none" stroke="#173154" stroke-width="10"/>
+          <circle cx="160" cy="260" r="14" fill="#173154"/><circle cx="260" cy="260" r="14" fill="#173154"/>
+          <circle cx="170" cy="160" r="10" fill="#F0664B"/><rect x="200" y="150" width="24" height="20" fill="#F2B33D"/><circle cx="250" cy="160" r="10" fill="#FDEBD8"/>
+        </svg>
+        <span class="tag">Mercadinhos</span>
+      </div>
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#F6E4E0"/>
+          <rect x="60" y="200" width="280" height="16" fill="#173154"/>
+          <rect x="90" y="216" width="14" height="40" fill="#173154"/><rect x="300" y="216" width="14" height="40" fill="#173154"/>
+          <path d="M170 200 a30 30 0 0 1 60 0 Z" fill="#FDEBD8"/><circle cx="200" cy="190" r="6" fill="#F0664B"/>
+          <circle cx="130" cy="150" r="20" fill="#F2B33D"/><circle cx="270" cy="150" r="20" fill="#12A5A0"/>
+          <path d="M130 170 L130 200 M270 170 L270 200" stroke="#173154" stroke-width="3"/>
+        </svg>
+        <span class="tag">Buffets</span>
+      </div>
+      <div class="port-card">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#EFEAF6"/>
+          <rect x="90" y="150" width="70" height="70" rx="10" fill="#F0664B"/>
+          <circle cx="260" cy="150" r="40" fill="#F2B33D"/>
+          <polygon points="200,220 240,150 160,150" fill="#12A5A0"/>
+          <rect x="60" y="230" width="280" height="14" fill="#173154" opacity=".3"/>
+        </svg>
+        <span class="tag">Brinquedos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Depoimentos</div>
+      <h2>O que dizem sobre a ARM</h2>
+      <p>Depoimentos de exemplo — troque pelos comentários reais dos seus clientes.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"A entrega é rápida e o mix de produtos sempre atende o que minha loja precisa."</p>
+        <div class="testi-who"><div class="avatar">RS</div><div><div class="name">Rosana Silva</div><div class="biz">Papelaria Estrela</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Fechei minha loja de festas com a ARM e nunca faltou balão ou descartável."</p>
+        <div class="testi-who"><div class="avatar">CM</div><div><div class="name">Carlos Melo</div><div class="biz">Festa & Cia</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Atendimento direto pelo WhatsApp facilita muito o reabastecimento semanal."</p>
+        <div class="testi-who"><div class="avatar">JA</div><div><div class="name">Juliana Alves</div><div class="biz">Bazar da Ju</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Preço justo e variedade boa de brinquedos para revenda."</p>
+        <div class="testi-who"><div class="avatar">PT</div><div><div class="name">Paulo Teixeira</div><div class="biz">Mercadinho Bom Preço</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Uso os itens de decoração da ARM em todos os buffets que organizo."</p>
+        <div class="testi-who"><div class="avatar">MC</div><div><div class="name">Mariana Costa</div><div class="biz">Cheff Eventos</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Utilidades domésticas com giro rápido, ótimo parceiro para o meu estoque."</p>
+        <div class="testi-who"><div class="avatar">EF</div><div><div class="name">Eduardo Farias</div><div class="biz">Casa & Utilidades</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Fale direto com a ARM</h2>
+      <p>Atendimento rápido pelo WhatsApp para novos pedidos, catálogo e parcerias em todo Sergipe.</p>
+      <a class="btn-primary" href="https://wa.me/5579981575277" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+    <div class="contact-card">
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+5579981575277">(79) 98157 5277</a></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6 12 13 2 6"/></svg><a href="mailto:ari.repmultimarcas@hotmail.com">ari.repmultimarcas@hotmail.com</a></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6 12 13 2 6"/></svg><a href="mailto:arirepresentacoesmultimarcas@gmail.com">arirepresentacoesmultimarcas@gmail.com</a></div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Sergipe — Brasil</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>ARM · Ari Representações Multimarcas</strong> — a serviço da sua empresa · Sergipe, Brasil
+</footer>
+
+<div class="chat-bubble">Precisa de algo? Fale com a gente 👋</div>
+<a class="chat-fab" href="https://wa.me/5579981575277" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.13-1.55a9.9 9.9 0 0 0 4.91 1.28c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.93 1.36-.5.06-1.02.08-1.63-.1-.37-.11-.85-.27-1.46-.53-2.57-1.11-4.24-3.75-4.37-3.93-.13-.18-1.05-1.39-1.05-2.65s.66-1.87.9-2.13c.24-.26.52-.32.7-.32.17 0 .35 0 .5.01.16.01.38-.06.6.46.24.55.8 1.93.87 2.07.07.14.11.3.02.48-.09.18-.14.29-.28.44-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.06.94 1.95 1.23 2.23 1.37.28.13.44.11.61-.07.17-.18.7-.81.88-1.09.19-.28.37-.23.62-.14.25.09 1.6.75 1.87.89.28.13.46.2.53.31.07.11.07.63-.17 1.31z"/></svg>
+</a>
+
+</body>
+</html>
